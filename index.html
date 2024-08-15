@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Card Management</title>
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!-- Script kiểm tra đăng nhập -->
+    <script>
+        if (!sessionStorage.getItem('loggedIn')) {
+            window.location.href = "login.html";
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>School Card Management</h1>
+        <button class="logout-btn">
+            <i class='bx bx-log-out'></i> Log Out
+        </button>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#dashboard">Dashboard</a></li>
+            <li><a href="#add-user">Add User</a></li>
+            <li><a href="#manage-cards">Manage Cards</a></li>
+            <li><a href="#reissue-card">Reissue Card</a></li> <!-- Link mới -->
+            <li><a href="#reports">Reports</a></li>
+        </ul>
+    </nav>
+    <script>
+        document.querySelector('.logout-btn').addEventListener('click', function() {
+            sessionStorage.removeItem('loggedIn');
+            window.location.href = "login.html";
+        });
+    </script>    
+    <main>
+        <section id="dashboard">
+            <h2>Dashboard</h2>
+            <div class="dashboard-cards">
+                <div class="card">
+                    <h3>Total Students</h3>
+                    <p>250</p>
+                </div>
+                <div class="card">
+                    <h3>Total Teachers</h3>
+                    <p>40</p>
+                </div>
+                <div class="card">
+                    <h3>Total Staff</h3>
+                    <p>20</p>
+                </div>
+            </div>
+            <div class="recent-activity">
+                <h3>Recent Activity</h3>
+                <ul>
+                    <li>Nguyễn Quang Huy (Student) issued a new card.</li>
+                    <li>Nguyễn Đình Việt (Teacher) updated his card details.</li>
+                    <li>New staff member added: Phùng Quang Trà.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="add-user">
+            <h2>Add User</h2>
+            <form action="/add-user" method="POST">
+                <div class="input-box">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" placeholder="Enter full name" required>
+                    <i class='bx bxs-user'></i>
+                </div>
+                <div class="input-box">
+                    <label for="role">Role:</label>
+                    <select id="role" name="role" required>
+                        <option value="student">Student</option>
+                        <option value="teacher">Teacher</option>
+                        <option value="staff">Staff</option>
+                    </select>
+                </div>
+                <div class="input-box">
+                    <label for="card_id">Card ID:</label>
+                    <input type="text" id="card_id" name="card_id" placeholder="Enter card ID" required>
+                    <i class='bx bxs-id-card'></i>
+                </div>
+                <button type="submit" class="btn">Add User</button>
+            </form>
+        </section>
+
+        <section id="manage-cards">
+            <h2>Manage Cards</h2>
+            <p>View and manage all issued cards here.</p>
+            
+            <!-- Search Form -->
+            <div class="search-box">
+                <label for="search-card-id">Search Card ID:</label>
+                <input type="text" id="search-card-id" placeholder="Enter Card ID">
+                <button class="btn" id="search-btn">Search</button>
+            </div>
+            
+            <!-- Table for Managing Cards -->
+            <section id="manage-cards">
+                <h2>Manage Cards</h2>
+                <p>View and manage all issued cards here.</p>
+                <div class="table-container">
+                    <table id="cards-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Role</th>
+                                <th>Card ID</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Phạm Đình Đức</td>
+                                <td>Student</td>
+                                <td>BIT12345</td>
+                                <td>
+                                    <button class="btn">Edit</button>
+                                    <button class="btn btn-danger">Delete</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Nguyễn Quang Huy</td>
+                                <td>Student</td>
+                                <td>BIT67890</td>
+                                <td>
+                                    <button class="btn">Edit</button>
+                                    <button class="btn btn-danger">Delete</button>
+                                </td>
+                            </tr>
+                            <!-- More rows as needed -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            
+            
+            <!-- Detailed Card Info -->
+            <div id="card-details" class="card-details">
+                <h3>Card Details</h3>
+                <p id="card-info">Please search for a card to view details.</p>
+            </div>
+        </section>
+
+        <script>
+            document.getElementById('search-btn').addEventListener('click', function() {
+                const cardId = document.getElementById('search-card-id').value.trim();
+                const cardInfo = document.getElementById('card-info');
+        
+                // Sample data for demonstration. Replace with actual data retrieval logic.
+                const cardDatabase = [
+                    { name: 'Phạm Đình Đức', role: 'Student', cardId: 'BIT12345' },
+                    { name: 'Nguyễn Quang Huy', role: 'Student', cardId: 'BIT67890' },
+                    // Add more sample data as needed
+                ];
+        
+                // Find the card by ID
+                const card = cardDatabase.find(card => card.cardId === cardId);
+        
+                if (card) {
+                    cardInfo.innerHTML = `
+                        <strong>Name:</strong> ${card.name}<br>
+                        <strong>Role:</strong> ${card.role}<br>
+                        <strong>Card ID:</strong> ${card.cardId}
+                    `;
+                } else {
+                    cardInfo.innerHTML = 'No card found with this ID.';
+                }
+            });
+        </script>
+        
+        
+        <section id="reports">
+            <h2>Reports</h2>
+            <p>Generate and view reports regarding card usage.</p>
+            
+            <section id="manage-cards">
+    <h2>Manage Cards</h2>
+    <p>View and manage all issued cards here.</p>
+    <table id="cards-table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Role</th>
+                <th>Card ID</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Phạm Đình Đức</td>
+                <td>Student</td>
+                <td>BIT12345</td>
+                <td>
+                    <button class="btn">Edit</button>
+                    <button class="btn btn-danger">Delete</button>
+                    <button class="btn btn-reissue">Reissue Card</button>
+                </td>
+            </tr>
+            <tr>
+                <td>Nguyễn Quang Huy</td>
+                <td>Student</td>
+                <td>BIT67890</td>
+                <td>
+                    <button class="btn">Edit</button>
+                    <button class="btn btn-danger">Delete</button>
+                    <button class="btn btn-reissue">Reissue Card</button>
+                </td>
+            </tr>
+            <!-- More rows as needed -->
+        </tbody>
+    </table>
+</section>
+
+<section id="reissue-card">
+    <h2>Reissue Card</h2>
+    <form action="/reissue-card" method="POST">
+        <div class="input-box">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter full name" required>
+            <i class='bx bxs-user'></i>
+        </div>
+        <div class="input-box">
+            <label for="role">Role:</label>
+            <select id="role" name="role" required>
+                <option value="student">Student</option>
+                <option value="teacher">Teacher</option>
+                <option value="staff">Staff</option>
+            </select>
+        </div>
+        <div class="input-box">
+            <label for="card_id">Current Card ID:</label>
+            <input type="text" id="card_id" name="card_id" placeholder="Enter current card ID" required>
+            <i class='bx bxs-id-card'></i>
+        </div>
+        <div class="input-box">
+            <label for="new_card_id">New Card ID:</label>
+            <input type="text" id="new_card_id" name="new_card_id" placeholder="Enter new card ID" required>
+            <i class='bx bxs-id-card'></i>
+        </div>
+        <button type="submit" class="btn btn-reissue">Reissue Card</button>
+    </form>
+</section>
+             <script>
+                document.addEventListener("DOMContentLoaded", function() {
+                    const reissueForm = document.querySelector('#reissue-card form');
+                
+                    reissueForm.addEventListener('submit', function(event) {
+                        event.preventDefault();
+                
+                        const name = document.getElementById('name').value;
+                        const role = document.getElementById('role').value;
+                        const cardID = document.getElementById('card_id').value;
+                        const newCardID = document.getElementById('new_card_id').value;
+                
+                        // Thêm logic xử lý khi cấp lại thẻ ở đây, ví dụ gửi request đến server
+                
+                        alert(`Card for ${name} (${role}) has been reissued with new ID: ${newCardID}`);
+                    });
+                });
+                
+            </script>
+            <!-- Overview Statistics -->
+            <div class="report-overview">
+                <h3>Overview Statistics</h3>
+                <p>Total Cards Issued: <span id="total-cards">500</span></p>
+                <p>Total Issues Reported: <span id="total-issues">10</span></p>
+                <button class="btn" id="view-stats">View Statistics</button>
+            </div>
+        
+            <!-- Statistics by Date -->
+            <div class="report-by-date">
+                <h3>Statistics by Date</h3>
+                <label for="start-date">Start Date:</label>
+                <input type="date" id="start-date">
+                <label for="end-date">End Date:</label>
+                <input type="date" id="end-date">
+                <button class="btn" id="filter-stats">Filter</button>
+                <div id="date-stats">
+                    <!-- Results will be displayed here -->
+                </div>
+            </div>
+            
+            <!-- Detailed Statistics -->
+            <div class="report-detail">
+                <h3>Detailed Statistics</h3>
+                <label for="details-card-id">Card ID:</label>
+                <input type="text" id="details-card-id" placeholder="Enter Card ID">
+                <button class="btn" id="view-details">View Details</button>
+                <div id="details-info">
+                    <!-- Detailed info will be displayed here -->
+                </div>
+            </div>
+        </section>
+        <script>
+            document.getElementById('view-stats').addEventListener('click', function() {
+                // Sample data for demonstration. Replace with actual data retrieval logic.
+                const totalCards = 500;
+                const totalIssues = 10;
+        
+                // Displaying the overview statistics
+                document.getElementById('total-cards').innerText = totalCards;
+                document.getElementById('total-issues').innerText = totalIssues;
+            });
+        
+            document.getElementById('filter-stats').addEventListener('click', function() {
+                const startDate = document.getElementById('start-date').value;
+                const endDate = document.getElementById('end-date').value;
+        
+                // Sample data for demonstration. Replace with actual data retrieval logic.
+                const statsByDate = `From ${startDate} to ${endDate}: 100 cards issued, 5 issues reported`;
+        
+                // Displaying statistics by date
+                document.getElementById('date-stats').innerText = statsByDate;
+            });
+        
+            document.getElementById('view-details').addEventListener('click', function() {
+                const cardId = document.getElementById('details-card-id').value.trim();
+        
+                // Sample data for demonstration. Replace with actual data retrieval logic.
+                const cardDetails = {
+                    'BIT12345': 'Card ID: BIT12345, Issued to: Phạm Đình Đức, Role: Student, Issued on: 2024-08-01',
+                    'BIT67890': 'Card ID: BIT67890, Issued to: Nguyễn Quang Huy, Role: Student, Issued on: 2024-08-05'
+                };
+        
+                // Find the card by ID
+                const details = cardDetails[cardId] || 'No details found for this Card ID.';
+        
+                // Displaying detailed info
+                document.getElementById('details-info').innerText = details;
+            });
+        </script>
+    </main>
+</body>
+</html>

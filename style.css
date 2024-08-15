@@ -1,0 +1,649 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #71b7e6, #9b59b6);
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+/* Header Style */
+header {
+    background: linear-gradient(135deg, #6dd5fa, #2980b9); /* Màu nền gradient phù hợp với trang */
+    color: white;
+    padding: 20px;
+    text-align: center;
+    width: 100%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    border-bottom: 4px solid #ffffff; /* Viền dưới màu trắng để nổi bật */
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    transition: background 0.3s ease, box-shadow 0.3s ease; /* Hiệu ứng chuyển động khi cuộn trang */
+}
+
+header:hover {
+    background: linear-gradient(135deg, #2980b9, #6dd5fa); /* Đảo ngược gradient khi hover để tạo sự thay đổi */
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin: 0;
+    letter-spacing: 2px;
+}
+
+/* Log Out Button Styles */
+header .logout-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, #9521b1, #a52bc0);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+header .logout-btn:hover {
+    background: linear-gradient(135deg, #c0392b, #e74c3c);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
+}
+
+header .logout-btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+header .logout-btn i {
+    margin-right: 10px;
+    font-size: 18px;
+    vertical-align: middle;
+}
+
+
+/* Navigation Menu */
+nav {
+    background: #ffffff; /* Nền màu trắng để nổi bật trên nền gradient của trang */
+    color: #333; /* Màu chữ tối để dễ đọc trên nền trắng */
+    padding: 10px 0;
+    text-align: center;
+    width: 100%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    border-bottom: 2px solid #6dd5fa; /* Viền dưới màu gradient để tạo điểm nhấn */
+    position: fixed;
+    top: 70px; /* Khoảng cách dưới header */
+    left: 0;
+    z-index: 1000;
+    transition: background 0.3s ease, box-shadow 0.3s ease; /* Hiệu ứng chuyển động khi cuộn trang */
+}
+
+nav:hover {
+    background: #f7f7f7; /* Nền sáng hơn khi hover để tạo sự thay đổi */
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    margin: 0 15px;
+    position: relative; /* Để có thể sử dụng hiệu ứng hover cho các liên kết */
+}
+
+nav ul li a {
+    color: #2980b9; /* Màu chữ chính cho các liên kết */
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.2rem;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #6dd5fa; /* Màu chữ khi hover để tạo sự thay đổi */
+    transform: translateY(-3px); /* Dịch chuyển nhẹ khi hover để tạo hiệu ứng nổi bật */
+    text-decoration: underline;
+}
+
+/* Main content adjustment for header and nav */
+main {
+    padding: 100px 20px 20px; /* Cập nhật padding-top để phù hợp với chiều cao của header và nav cố định */
+    max-width: 1200px;
+    margin: 20px auto;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Dashboard Cards Style */
+.dashboard-cards {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.card {
+    background: #9b59b6;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 30%;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.card h3 {
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+}
+
+.card p {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+/* Recent Activity Style */
+.recent-activity {
+    background: #f7f7f7;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.recent-activity:hover {
+    background-color: #eaeaea;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.recent-activity h3 {
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.recent-activity ul {
+    list-style: none;
+    padding: 0;
+}
+
+.recent-activity ul li {
+    margin-bottom: 10px;
+    font-size: 1rem;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.recent-activity ul li:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+.recent-activity ul li:nth-child(even) {
+    background-color: #f1f1f1;
+}
+
+.recent-activity ul li:hover {
+    background-color: #dfe6e9;
+}
+
+/* Manage Cards Section */
+#manage-cards {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+#manage-cards h2 {
+    color: #333;
+    margin-bottom: 15px;
+    font-size: 1.8rem;
+}
+
+#manage-cards p {
+    font-size: 1rem;
+    margin-bottom: 15px;
+}
+
+/* Table Container */
+.table-container {
+    overflow-x: auto; /* Cho phép cuộn ngang nếu bảng quá rộng */
+}
+
+/* Table Style */
+#cards-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#cards-table thead {
+    background: #9b59b6; /* Màu nền của tiêu đề bảng */
+    color: white;
+}
+
+#cards-table th, #cards-table td {
+    padding: 10px;
+    text-align: left;
+}
+
+#cards-table th {
+    font-weight: bold;
+}
+
+#cards-table tbody tr:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+#cards-table tbody tr:nth-child(even) {
+    background-color: #f1f1f1;
+}
+
+#cards-table tbody tr:hover {
+    background-color: #eaeaea;
+}
+
+/* Button Styles in Table */
+#cards-table .btn {
+    padding: 5px 10px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+#cards-table .btn:hover {
+    opacity: 0.8;
+}
+
+#cards-table .btn.btn-danger {
+    background: #e74c3c;
+    color: white;
+}
+
+#cards-table .btn.btn-danger:hover {
+    background: #c0392b;
+}
+
+
+/* Add User Style */
+.add-user {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.add-user h2 {
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    color: #333;
+}
+
+.add-user .input-box {
+    margin-bottom: 20px;
+}
+
+.add-user .input-box input, 
+.add-user .input-box select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: #f9f9f9;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+.add-user .input-box input:focus, 
+.add-user .input-box select:focus {
+    border-color: #9b59b6;
+    outline: none;
+}
+
+.add-user .btn {
+    background: #9b59b6;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    font-size: 16px;
+}
+
+.add-user .btn:hover {
+    background: #8e44ad;
+}
+
+/* Search Box Style */
+.search-box {
+    margin-bottom: 20px;
+}
+
+.search-box label {
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+.search-box input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.search-box button {
+    background: #9b59b6;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-left: 10px;
+}
+
+.search-box button:hover {
+    background: #8e44ad;
+}
+
+/* Card Details Style */
+.card-details {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.card-details h3 {
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+}
+
+.card-details p {
+    font-size: 1.2rem;
+}
+
+
+/* Button Style with Icon */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 12px 25px;
+    background: #9b59b6;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a shadow for depth */
+}
+
+.btn i {
+    font-size: 18px;
+    margin-right: 8px; /* Space between icon and text */
+}
+
+/* Hover Effect */
+.btn:hover {
+    background: #8e44ad; /* Darker shade of background color */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Increase shadow on hover */
+    transform: translateY(-2px); /* Slightly lift the button */
+}
+
+/* Focus Effect */
+.btn:focus {
+    outline: none; /* Remove default focus outline */
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.5); /* Add custom focus ring */
+}
+
+/* Active Effect */
+.btn:active {
+    background: #7d3c8e; /* Even darker shade on click */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); /* Reduce shadow on click */
+    transform: translateY(1px); /* Slightly lower the button on click */
+}
+
+/* Reissue Card Section Styles */
+#reissue-card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    margin: 20px auto;
+}
+
+#reissue-card h2 {
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 1.8rem;
+}
+
+#reissue-card .input-box {
+    margin-bottom: 20px;
+}
+
+#reissue-card .input-box input,
+#reissue-card .input-box select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: #f9f9f9;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+#reissue-card .input-box input:focus,
+#reissue-card .input-box select:focus {
+    border-color: #9b59b6;
+    outline: none;
+}
+
+#reissue-card .btn-reissue {
+    background: linear-gradient(135deg, #f39c12, #e67e22);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    text-align: center;
+}
+
+#reissue-card .btn-reissue:hover {
+    background: linear-gradient(135deg, #e67e22, #d35400);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
+}
+
+#reissue-card .btn-reissue:active {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Report Controls Style */
+.report-controls {
+    margin-bottom: 20px;
+}
+
+.report-controls .btn {
+    margin-right: 10px;
+}
+
+/* Report Output Style */
+.report-output {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Add icons for report buttons */
+#report-usage::before {
+    content: "\f080"; /* Icon code for report usage */
+    font-family: 'Boxicons';
+    margin-right: 5px;
+}
+
+#report-security::before {
+    content: "\f13d"; /* Icon code for security issue */
+    font-family: 'Boxicons';
+    margin-right: 5px;
+}
+
+#report-efficiency::before {
+    content: "\f0e7"; /* Icon code for efficiency */
+    font-family: 'Boxicons';
+    margin-right: 5px;
+}
+
+/* Report Overview Style */
+.report-overview, .report-by-date, .report-detail {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.report-overview h3, .report-by-date h3, .report-detail h3 {
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+.report-overview p, .report-by-date p, .report-detail label {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.report-by-date input[type="date"] {
+    margin-right: 10px;
+}
+
+.report-detail input {
+    margin-right: 10px;
+}
+
+/* Button Styles in Reports Section */
+.report-overview .btn, .report-by-date .btn, .report-detail .btn {
+    margin-top: 10px;
+}
+
+
+/* Form Style */
+form {
+    background: #f7f7f7;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.input-box {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.input-box input, .input-box select {
+    width: 100%;
+    padding: 10px 40px 10px 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: #f1f1f1;
+    font-size: 16px;
+}
+
+.input-box i {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 15px;
+    color: #666;
+}
+
+.btn {
+    padding: 10px 20px;
+    background: #9b59b6;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+    font-size: 16px;
+}
+
+.btn:hover {
+    background: #8e44ad;
+}
+
+.btn-danger {
+    background: #e74c3c;
+    margin-left: 10px;
+}
+
+.btn-danger:hover {
+    background: #c0392b;
+}
+
+/* Table Style */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table thead {
+    background: #9b59b6;
+    color: white;
+}
+
+table th, table td {
+    padding: 10px;
+    text-align: left;
+}
+
+table th {
+    font-weight: bold;
+}
+
+table tbody tr:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+table tbody tr:nth-child(even) {
+    background-color: #f1f1f1;
+}
+
+table tbody tr:hover {
+    background-color: #eaeaea;
+}
+
